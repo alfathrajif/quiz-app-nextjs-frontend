@@ -17,6 +17,7 @@ export default async function AdminQuizzes() {
 
   return (
     <div>
+      create quiz
       <DataTable data={quizzes} columns={columns} />
     </div>
   );
