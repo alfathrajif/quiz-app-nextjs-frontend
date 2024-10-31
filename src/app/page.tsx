@@ -1,6 +1,6 @@
 import { getQuizzes } from "@/actions/quiz";
 import QuizCards from "@/components/quiz/quiz-cards";
-import { Quiz } from "@/types";
+import { Quiz } from "@/types/quiz";
 import React from "react";
 
 export default async function HomePage() {

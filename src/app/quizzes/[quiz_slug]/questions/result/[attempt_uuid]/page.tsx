@@ -68,7 +68,7 @@ const SingleResultPage = async ({
             <div key={answerIndex} className="mb-6">
               <QuestionText
                 number={answer.question?.number}
-                text={answer.question?.question_text}
+                text={answer.question?.text}
               />
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                 {answer.question.choices.map((choice, choiceIndex) => {
@@ -104,7 +104,7 @@ const SingleResultPage = async ({
                         )}`}>
                         <Bullet className={getBulletColor(answer, choice)} />
                       </BulletRing>
-                      {choice.choice_text}
+                      {choice.text}
                     </ButtonChoice>
                   );
                 })}

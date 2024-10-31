@@ -2,10 +2,11 @@
 
 import { Cross2Icon } from "@radix-ui/react-icons";
 import { Table } from "@tanstack/react-table";
-
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { DataTableViewOptions } from "./data-table-view-options";
+import Link from "next/link";
+import { Plus } from "lucide-react";
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>;
@@ -37,7 +38,15 @@ export function DataTableToolbar<TData>({
           </Button>
         )}
       </div>
-      <DataTableViewOptions table={table} />
+      <div className="flex items-center gap-x-1">
+        <Link href={`/admin/quizzes/c`}>
+          <Button size="sm" className="text-xs gap-x-1">
+            <Plus className="w-4 h-4" />
+            New Quiz
+          </Button>
+        </Link>
+        <DataTableViewOptions table={table} />
+      </div>
     </div>
   );
 }

@@ -2,10 +2,12 @@
 
 import { Cross2Icon } from "@radix-ui/react-icons";
 import { Table } from "@tanstack/react-table";
-
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { DataTableViewOptions } from "./data-table-view-options";
+import Link from "next/link";
+import { Plus } from "lucide-react";
+import { useParams } from "next/navigation";
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>;
@@ -15,6 +17,7 @@ export function DataTableToolbar<TData>({
   table,
 }: DataTableToolbarProps<TData>) {
   const isFiltered = table.getState().columnFilters.length > 0;
+  const params = useParams<{ quiz_slug: string }>();
 
   return (
     <div className="flex items-center justify-between">
@@ -37,7 +40,15 @@ export function DataTableToolbar<TData>({
           </Button>
         )}
       </div>
-      <DataTableViewOptions table={table} />
+      <div className="flex items-center gap-x-1">
+        <Link href={`/admin/quizzes/r/${params.quiz_slug}/u`}>
+          <Button size="sm" className="text-xs gap-x-1">
+            <Plus className="w-4 h-4" />
+            Update Quiz & Questions
+          </Button>
+        </Link>
+        <DataTableViewOptions table={table} />
+      </div>
     </div>
   );
 }

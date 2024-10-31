@@ -106,6 +106,18 @@ const AuthFormSignup = () => {
 
   return (
     <>
+      {ENV !== "production" && (
+        <div className="mt-4 absolute -translate-x-1/2 -translate-y-1/2 bottom-0 left-1/2">
+          <Button
+            variant="secondary"
+            type="button"
+            size="lg"
+            onClick={autoFillLogin}
+            className="w-full text-sm">
+            Auto Fill
+          </Button>
+        </div>
+      )}
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <div className="mb-6 gap-4 grid grid-cols-2">
@@ -261,18 +273,6 @@ const AuthFormSignup = () => {
           </Button>
         </form>
       </Form>
-      {ENV !== "production" && (
-        <div className="mt-4 absolute -translate-x-1/2 -translate-y-1/2 bottom-0 left-1/2">
-          <Button
-            variant="secondary"
-            type="button"
-            size="lg"
-            onClick={autoFillLogin}
-            className="w-full text-sm">
-            Auto Fill
-          </Button>
-        </div>
-      )}
     </>
   );
 };

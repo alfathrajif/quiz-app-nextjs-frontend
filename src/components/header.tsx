@@ -1,13 +1,8 @@
 "use client";
 import { logout } from "@/actions/auth";
 import { AuthContext } from "@/app/(auth)/auth-context";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { unauthenticatedRoutes } from "@/constants";
-import { LayoutDashboard, LogOut, Moon, Sun, User } from "lucide-react";
-import { useTheme } from "next-themes";
-import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
-import { useContext } from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -16,7 +11,13 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { unauthenticatedRoutes } from "@/constants";
+import { LayoutDashboard, LogOut, Moon, Sun, User } from "lucide-react";
+import { useTheme } from "next-themes";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import { useContext } from "react";
+import AdminSheet from "./admin-sheet";
 
 const Header = () => {
   const pathname = usePathname();
@@ -39,11 +40,14 @@ const Header = () => {
   if (isUnauthenticatedRoute) return null;
 
   return (
-    <header className="flex w-full items-center h-16 border-b">
+    <header className="sticky top-0 z-10 bg-background/90 backdrop-blur-md flex w-full items-center h-16 border-b">
       <div className="wrapper flex items-center">
-        <Link href="/">
-          <h1 className="text-xl font-bold">Quiz</h1>
-        </Link>
+        <div className="flex">
+          {pathname.startsWith("/admin") && <AdminSheet />}
+          <Link href="/" className="hidden md:block">
+            <h1 className="text-xl font-bold">Quiz</h1>
+          </Link>
+        </div>
         <div className="ml-auto flex items-center gap-x-2">
           {!isAuthenticated ? (
             <div className="flex gap-x-0.5">

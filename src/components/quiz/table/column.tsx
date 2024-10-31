@@ -1,11 +1,11 @@
 "use client";
 import { ColumnDef } from "@tanstack/react-table";
 import { DataTableColumnHeader } from "./data-table-column-header";
-import { Quiz } from "@/types";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { User } from "lucide-react";
 import moment from "moment";
 import Link from "next/link";
+import { Quiz } from "@/types/quiz";
 
 export const columns: ColumnDef<Quiz>[] = [
   {
@@ -37,7 +37,7 @@ export const columns: ColumnDef<Quiz>[] = [
 
       return (
         <Link
-          href={`/admin/quizzes/${slug}`}
+          href={`/admin/quizzes/r/${slug}`}
           className="flex items-center space-x-2 h-11 px-3 hover:underline">
           <span className="font-medium">{row.getValue("title")}</span>
         </Link>

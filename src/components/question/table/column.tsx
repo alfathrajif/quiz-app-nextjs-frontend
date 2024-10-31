@@ -57,7 +57,7 @@ export const columns: ColumnDef<Question>[] = [
               className={`font-medium whitespace-nowrap ${
                 choice.is_correct && "border-green-700 text-green-700"
               }`}>
-              {choice.choice_text}
+              {choice.text}
             </Badge>
           ))}
         </div>

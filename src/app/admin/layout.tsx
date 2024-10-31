@@ -2,6 +2,7 @@
 import { adminRoutes } from "@/constants";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import styles from "./layout.module.css";
 
 const AdminLayout = ({
   children,
@@ -12,8 +13,9 @@ const AdminLayout = ({
   const { management, monitoring } = adminRoutes;
 
   return (
-    <div className="flex gap-x-5 wrapper py-10">
-      <div className="w-[280px] flex flex-col gap-y-7">
+    <div className="flex gap-x-5 wrapper py-10 relative">
+      <div
+        className={`hidden w-[200px] xl:w-[280px] bg-background content-area top-16 md:flex flex-col gap-y-7 py-10 fixed`}>
         <div className="flex flex-col gap-y-2">
           <div className="text-sm p-1 px-2 font-semibold">Management</div>
           {management.map((route, index) => (
@@ -45,7 +47,7 @@ const AdminLayout = ({
           ))}
         </div>
       </div>
-      <main className="w-full">{children}</main>
+      <main className={styles.main}>{children}</main>
     </div>
   );
 };

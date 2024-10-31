@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "../ui/button";
 import Link from "next/link";
-import { Quiz } from "@/types";
+import { Quiz } from "@/types/quiz";
 
 const QuizCards = ({ quizzes }: { quizzes: Quiz[] }) => {
   if (quizzes.length === 0) {
