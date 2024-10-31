@@ -31,25 +31,25 @@ const QuestionChoice = ({
     <ButtonChoice
       onClick={() => handleChoiceChange(questionIndex, choice)}
       className={
-        selectedChoices[questionIndex]?.choice_text === choice.choice_text
+        selectedChoices[questionIndex]?.text === choice.text
           ? "bg-foreground text-background hover:bg-muted-foreground"
           : "bg-background text-foreground"
       }>
       <BulletRing
         className={
-          selectedChoices[questionIndex]?.choice_text === choice.choice_text
+          selectedChoices[questionIndex]?.text === choice.text
             ? "border-background p-1"
             : "border-foreground group-hover:border-foreground"
         }>
         <Bullet
           className={
-            selectedChoices[questionIndex]?.choice_text === choice.choice_text
+            selectedChoices[questionIndex]?.text === choice.text
               ? "bg-background"
               : "bg-transparent"
           }
         />
       </BulletRing>
-      {choice.choice_text}
+      {choice.text}
     </ButtonChoice>
   );
 };

@@ -20,14 +20,12 @@ export default async function middleware(request: NextRequest) {
   if (pathname === "/admin/dashboard" && profile.role.name !== "admin")
     return NextResponse.error();
 
-  if (isUnauthenticatedRoute) {
-    if (isAuthenticated)
-      return NextResponse.redirect(new URL("/", request.url));
-  } else {
-    if (!isAuthenticated)
-      return NextResponse.redirect(new URL("/login", request.url));
-    if (pathname === "/quizzes" || pathname === "/quiz")
-      return NextResponse.redirect(new URL("/", request.url));
+  if (isUnauthenticatedRoute && isAuthenticated && profile)
+    return NextResponse.redirect(new URL("/", request.url));
+
+  if (!isAuthenticated || !profile) {
+    if (pathname.includes("/quizzes"))
+      return NextResponse.redirect(new URL("/sign-up", request.url));
   }
 
   return NextResponse.next();

@@ -1,7 +1,8 @@
 "use server";
 import { API_URL } from "@/constants";
 import { getHeaders } from "@/lib/fetch";
-import { Quiz } from "@/types";
+import quizService from "@/services/quiz";
+import { CreateQuiz, Quiz, UpdateQuiz } from "@/types/quiz";
 
 export async function getQuiz(slug: string) {
   const url = `${API_URL}/quizzes/${slug}`;
@@ -38,4 +39,24 @@ export async function getQuizzes(): Promise<Quiz[]> {
   const res = await fetch(url, { cache: "no-cache" });
   const data = await res.json();
   return data.data;
+}
+
+export async function createQuiz(quiz: CreateQuiz) {
+  try {
+    const res = await quizService.create(quiz);
+    return res.data;
+  } catch (err) {
+    console.error(err);
+    throw err;
+  }
+}
+
+export async function updateQuiz(slug: string, quiz: UpdateQuiz) {
+  try {
+    const res = await quizService.update(slug, quiz);
+    return res.data;
+  } catch (err) {
+    console.error(err);
+    throw err;
+  }
 }

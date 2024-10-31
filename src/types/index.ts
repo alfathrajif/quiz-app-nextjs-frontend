@@ -1,9 +1,9 @@
 import { Question } from "./question";
-import { User } from "./user";
+import { Quiz } from "./quiz";
 
 export interface Choice {
   uuid: string;
-  choice_text: string;
+  text: string;
   is_correct: boolean;
   created_at: Date;
 }
@@ -18,19 +18,6 @@ export interface WebResponse<T> {
   success: boolean;
   status_code: number;
   data: T;
-}
-
-export interface Quiz {
-  uuid: string;
-  slug: string;
-  title: string;
-  description: string;
-  questions_count: number;
-  questions?: Question[];
-  created_by: {
-    user: User;
-  };
-  created_at: Date;
 }
 
 export interface QuizAttemptPayload {
