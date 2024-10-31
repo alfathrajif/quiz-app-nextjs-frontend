@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "staging": "next dev --port=4000",
+    "staging": "next dev",
     "build": "next build",
-    "start": "next start --port=5000",
+    "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
