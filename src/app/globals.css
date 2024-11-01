@@ -6,6 +6,89 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/*! locomotive-scroll v4.1.3 | MIT License | https://github.com/locomotivemtl/locomotive-scroll */
+html.has-scroll-smooth {
+  overflow: hidden;
+}
+
+html.has-scroll-dragging {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.has-scroll-smooth body {
+  overflow: hidden;
+}
+
+.has-scroll-smooth [data-scroll-container] {
+  min-height: 100vh;
+}
+
+[data-scroll-direction="horizontal"] [data-scroll-container] {
+  height: 100vh;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+[data-scroll-direction="horizontal"] [data-scroll-section] {
+  display: inline-block;
+  vertical-align: top;
+  white-space: nowrap;
+  height: 100%;
+}
+
+.c-scrollbar {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 11px;
+  height: 100%;
+  transform-origin: center right;
+  transition: transform 0.3s, opacity 0.3s;
+  opacity: 0;
+}
+.c-scrollbar:hover {
+  transform: scaleX(1.45);
+}
+.c-scrollbar:hover,
+.has-scroll-scrolling .c-scrollbar,
+.has-scroll-dragging .c-scrollbar {
+  opacity: 1;
+}
+[data-scroll-direction="horizontal"] .c-scrollbar {
+  width: 100%;
+  height: 10px;
+  top: auto;
+  bottom: 0;
+  transform: scaleY(1);
+}
+[data-scroll-direction="horizontal"] .c-scrollbar:hover {
+  transform: scaleY(1.3);
+}
+
+.c-scrollbar_thumb {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: black;
+  opacity: 0.5;
+  width: 7px;
+  border-radius: 10px;
+  margin: 2px;
+  cursor: -webkit-grab;
+  cursor: grab;
+}
+.has-scroll-dragging .c-scrollbar_thumb {
+  cursor: -webkit-grabbing;
+  cursor: grabbing;
+}
+[data-scroll-direction="horizontal"] .c-scrollbar_thumb {
+  right: auto;
+  bottom: 0;
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
@@ -19,17 +102,17 @@ body {
     --foreground: 228 7.3% 0.52%;
     --muted: 228 7.3% 91.3%;
     --muted-foreground: 228 3.65% 41.3%;
-    --popover: 228 31.6% 91.3%;
+    --popover: 228 98.65% 99%;
     --popover-foreground: 228 7.3% 0.65%;
     --card: 228 31.6% 91.3%;
     --card-foreground: 228 7.3% 0.65%;
     --border: 228 12.3% 89.52%;
     --input: 228 12.3% 89.52%;
-    --primary: 228 73% 13%;
+    --primary: 221 51% 16%;
     --primary-foreground: 228 1.46% 91.3%;
-    --secondary: 228 3.65% 95.65%;
+    --secondary: 228 3.65% 90%;
     --secondary-foreground: 228 5.38% 11.3%;
-    --accent: 228 3.65% 95.65%;
+    --accent: 228 3.65% 90%;
     --accent-foreground: 228 5.38% 11.3%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
@@ -48,8 +131,8 @@ body {
     --card-foreground: 215 8.2% 97.2%;
     --border: 215 41% 13.2%;
     --input: 215 41% 13.2%;
-    --primary: 215 82% 44%;
-    --primary-foreground: 215 8.2% 97.2%;
+    --primary: 37 98% 53%;
+    --primary-foreground: 215 53.3% 3.52%;
     --secondary: 215 41% 13.2%;
     --secondary-foreground: 215 8.2% 97.2%;
     --accent: 215 41% 13.2%;
@@ -63,15 +146,28 @@ body {
 @layer base {
   * {
     @apply border-border;
+    scroll-behavior: smooth;
   }
   body {
     @apply bg-background text-foreground;
   }
   .wrapper {
-    @apply container mx-auto px-8;
+    @apply w-full xl:max-w-[1450px] mx-auto px-8;
   }
 }
 
 .content-area {
   min-height: calc(100vh - theme(height.16));
+}
+
+/* Chrome, Safari, Edge, Opera */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
 }

@@ -1,16 +1,22 @@
-import { getQuizzes } from "@/actions/quiz";
-import QuizCards from "@/components/quiz/quiz-cards";
-import { Quiz } from "@/types/quiz";
-import React from "react";
+"use client";
+import { LocomotiveScrollProvider } from "react-locomotive-scroll";
 
-export default async function HomePage() {
-  const quizzes: Quiz[] = await getQuizzes();
+import { HeroSection } from "@/components/landing";
+import { useRef } from "react";
+
+export default function HomePage() {
+  const containerRef = useRef(null);
 
   return (
-    <div className="wrapper">
-      <div className="flex items-center justify-center content-area">
-        <QuizCards quizzes={quizzes} />
+    <LocomotiveScrollProvider
+      options={{
+        smooth: true,
+      }}
+      watch={[]}
+      containerRef={containerRef}>
+      <div data-scroll-container ref={containerRef}>
+        <HeroSection />
       </div>
-    </div>
+    </LocomotiveScrollProvider>
   );
 }

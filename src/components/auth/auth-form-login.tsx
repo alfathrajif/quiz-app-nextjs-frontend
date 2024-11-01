@@ -151,10 +151,10 @@ const AuthFormLogin = () => {
             {isLoading ? (
               <div className="flex items-center">
                 <IoReload className="mr-2 h-4 w-4 animate-spin" />
-                Please wait
+                Memuat...
               </div>
             ) : (
-              "Login"
+              "Masuk"
             )}
           </Button>
         </form>
