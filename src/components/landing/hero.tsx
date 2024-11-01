@@ -1,14 +1,12 @@
 "use client";
 import { HeroFigure, HeroFigureDark } from "@/assets";
 import Image from "next/image";
-import React, { useContext, useEffect, useState } from "react";
-import { Button } from "../ui/button";
 import Link from "next/link";
-import { AuthContext } from "@/app/(auth)/auth-context";
+import { useEffect, useState } from "react";
+import { Button } from "../ui/button";
 
 const Hero = () => {
   const [mounted, setMounted] = useState(false);
-  const { isAuthenticated } = useContext(AuthContext);
 
   useEffect(() => {
     setMounted(true);
