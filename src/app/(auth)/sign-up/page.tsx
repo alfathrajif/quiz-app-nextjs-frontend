@@ -3,15 +3,15 @@ import React from "react";
 
 const SignupPage = () => {
   return (
-    <div className="w-full max-w-sm space-y-5">
+    <div className="w-full max-w-md space-y-5">
       <AuthHeader
-        title="Join Quiz"
-        description="Create an account to start quizzing!"
+        title="Daftar Akun"
+        description="Untuk mendapatkan akses  ke&nbsp;fitur&nbsp;yang&nbsp;tersedia. Silahkan daftar&nbsp;terlebih&nbsp;dahulu dan mulai tryout."
       />
       <AuthFormSignup />
       <AuthFooter
-        description="Already have an account?"
-        linkTitle="Login"
+        description="Sudah mempunyai akun?"
+        linkTitle="Masuk Sekarang"
         linkUrl="/login"
       />
     </div>

@@ -3,11 +3,11 @@ export const ENV = process.env.NODE_ENV;
 
 export const unauthenticatedRoutes = [
   {
-    title: "Login",
+    title: "Masuk",
     path: "/login",
   },
   {
-    title: "Signup",
+    title: "Daftar",
     path: "/sign-up",
   },
 ];

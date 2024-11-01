@@ -19,13 +19,15 @@ import { IoEyeOffSharp, IoEyeSharp, IoReload } from "react-icons/io5";
 import { z } from "zod";
 import { toast } from "@/hooks/use-toast";
 import { signup } from "@/actions/auth";
+import { formatPhone } from "@/lib/utils";
 
 const formSchema = z
   .object({
-    first_name: z.string().min(2, {
-      message: "First name must be at least 2 characters",
+    first_name: z.string().min(1, {
+      message: "First name is required",
     }),
     last_name: z.string(),
+    phone: z.string().min(1, { message: "Phone number is required" }),
     email: z.string().email({ message: "Please enter a valid email" }),
     password: z.string().min(6, {
       message: "Password must be at least 6 characters",
@@ -50,6 +52,7 @@ const AuthFormSignup = () => {
     defaultValues: {
       first_name: "",
       last_name: "",
+      phone: "",
       email: "",
       password: "",
       confirm_password: "",
@@ -63,6 +66,7 @@ const AuthFormSignup = () => {
       const result = await signup({
         first_name: values.first_name,
         last_name: values.last_name,
+        phone: values.phone.replace(/\s/g, ""),
         email: values.email,
         password: values.password,
       });
@@ -96,9 +100,11 @@ const AuthFormSignup = () => {
     const firstName = `User${Math.floor(Math.random() * 1000)}`;
     const lastName = `Last${Math.floor(Math.random() * 1000)}`;
     const email = `user${Math.floor(Math.random() * 1000)}@example.com`;
+    const phone = "081234567890";
     const password = "Password123";
     form.setValue("first_name", firstName);
     form.setValue("last_name", lastName);
+    form.setValue("phone", formatPhone(phone));
     form.setValue("email", email);
     form.setValue("password", password);
     form.setValue("confirm_password", password);
@@ -107,7 +113,7 @@ const AuthFormSignup = () => {
   return (
     <>
       {ENV !== "production" && (
-        <div className="mt-4 absolute -translate-x-1/2 -translate-y-1/2 bottom-0 left-1/2">
+        <div className="mt-4 absolute -translate-x-1/2 -translate-y-1/2 bottom-0 left-20">
           <Button
             variant="secondary"
             type="button"
@@ -125,11 +131,11 @@ const AuthFormSignup = () => {
               control={form.control}
               name="first_name"
               render={({ field }) => (
-                <FormItem className="col-span-1">
-                  <FormLabel>First Name</FormLabel>
+                <FormItem className="col-span-2 sm:col-span-1">
+                  <FormLabel>Nama Depan</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="First Name"
+                      placeholder="Masukkan nama depan"
                       {...field}
                       autoComplete="additional-name webauthn"
                       className={
@@ -146,11 +152,11 @@ const AuthFormSignup = () => {
               control={form.control}
               name="last_name"
               render={({ field }) => (
-                <FormItem className="col-span-1">
-                  <FormLabel>Last Name</FormLabel>
+                <FormItem className="col-span-2 sm:col-span-1">
+                  <FormLabel>Nama Belakang</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="Last Name"
+                      placeholder="Masukkan nama belakang"
                       {...field}
                       autoComplete="additional-name webauthn"
                       className={
@@ -165,13 +171,45 @@ const AuthFormSignup = () => {
             />
             <FormField
               control={form.control}
+              name="phone"
+              render={({ field }) => {
+                const handleChange = (
+                  e: React.ChangeEvent<HTMLInputElement>
+                ) => {
+                  const inputValue = e.target.value;
+                  field.onChange(formatPhone(inputValue));
+                };
+
+                return (
+                  <FormItem className="col-span-2">
+                    <FormLabel>Nomor Telepon / WhatsApp</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="E.g. 081234567890"
+                        {...field}
+                        value={field.value}
+                        onChange={handleChange}
+                        autoComplete="additional-name webauthn"
+                        className={
+                          form.formState.errors?.last_name &&
+                          "focus-visible:ring-destructive border-destructive"
+                        }
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                );
+              }}
+            />
+            <FormField
+              control={form.control}
               name="email"
               render={({ field }) => (
                 <FormItem className="col-span-2">
                   <FormLabel>Email</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="Email"
+                      placeholder="Alamat Email"
                       {...field}
                       autoComplete="email"
                       className={
@@ -224,11 +262,11 @@ const AuthFormSignup = () => {
               name="confirm_password"
               render={({ field }) => (
                 <FormItem className="col-span-2">
-                  <FormLabel>Confirm Password</FormLabel>
+                  <FormLabel>Konfirmasi Password</FormLabel>
                   <div className="relative">
                     <FormControl>
                       <Input
-                        placeholder="Confirm Password"
+                        placeholder="Masukkan ulang password"
                         type={showConfirmPassword ? "text" : "password"}
                         autoComplete="new-password webauthn"
                         {...field}
@@ -265,10 +303,10 @@ const AuthFormSignup = () => {
             {isLoading ? (
               <div className="flex items-center">
                 <IoReload className="mr-2 h-4 w-4 animate-spin" />
-                Please wait
+                Memuat...
               </div>
             ) : (
-              "Sign Up"
+              "Daftar"
             )}
           </Button>
         </form>

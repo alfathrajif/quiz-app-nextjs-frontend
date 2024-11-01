@@ -18,6 +18,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useContext } from "react";
 import AdminSheet from "./admin-sheet";
+import Brand from "./brand";
 
 const Header = () => {
   const pathname = usePathname();
@@ -37,28 +38,36 @@ const Header = () => {
     pathname.startsWith(route.path)
   );
 
+  const isHomepage = pathname === "/";
+
   if (isUnauthenticatedRoute) return null;
 
   return (
-    <header className="sticky top-0 z-10 bg-background/90 backdrop-blur-md flex w-full items-center h-16 border-b">
+    <header
+      className={`sticky top-0 z-10 bg-background/90 backdrop-blur-md flex w-full items-center h-16 ${
+        isHomepage &&
+        "fixed top-0 left-0 bg-transparent backdrop-blur-none h-16 z-10 flex w-full items-center"
+      } `}>
       <div className="wrapper flex items-center">
         <div className="flex">
           {pathname.startsWith("/admin") && <AdminSheet />}
-          <Link href="/" className="hidden md:block">
-            <h1 className="text-xl font-bold">Quiz</h1>
-          </Link>
+          <Brand href="/" />
         </div>
         <div className="ml-auto flex items-center gap-x-2">
           {!isAuthenticated ? (
-            <div className="flex gap-x-0.5">
-              {unauthenticatedRoutes.map((route, index) => (
-                <Link
-                  key={index}
-                  href={route.path}
-                  className="h-9 flex items-center px-3 rounded-md hover:bg-muted">
-                  {route.title}
-                </Link>
-              ))}
+            <div className="flex gap-x-1.5">
+              {unauthenticatedRoutes.map((route, index) => {
+                const variant =
+                  route.path === "/login" ? "secondary" : "default";
+
+                return (
+                  <Link key={index} href={route.path}>
+                    <Button size="sm" variant={variant}>
+                      {route.title}
+                    </Button>
+                  </Link>
+                );
+              })}
             </div>
           ) : (
             <DropdownMenu>
@@ -73,7 +82,7 @@ const Header = () => {
               <DropdownMenuContent className="min-w-56" align="end">
                 <DropdownMenuLabel>
                   {profile.role.name === "admin" ? (
-                    <span className="text-primary">Admin Account</span>
+                    <span className="text-foreground">Admin Account</span>
                   ) : (
                     "My Account"
                   )}
