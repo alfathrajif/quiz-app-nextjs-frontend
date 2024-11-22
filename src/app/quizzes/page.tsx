@@ -1,7 +1,11 @@
-import React from "react";
+import SubscriptionAlert from "@/components/subcsciption/subscription-alert";
 
 const Quizzes = () => {
-  return <div>Quizzes</div>;
+  return (
+    <div className="wrapper py-10">
+      <SubscriptionAlert />
+    </div>
+  );
 };
 
 export default Quizzes;

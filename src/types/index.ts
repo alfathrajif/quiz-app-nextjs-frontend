@@ -10,13 +10,14 @@ export interface Choice {
 
 export interface Role {
   uuid: string;
-  name: "admin" | "user";
+  name: string;
 }
 
 export interface WebResponse<T> {
   message: string;
   success: boolean;
   status_code: number;
+  error?: string;
   data: T;
 }
 

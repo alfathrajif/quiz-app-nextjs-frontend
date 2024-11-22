@@ -41,18 +41,20 @@ export function DataTableViewOptions<TData>({
               typeof column.accessorFn !== "undefined" && column.getCanHide()
           )
           .map((column) => {
+            let title;
+
             switch (column.id) {
               case "number":
-                column.id = "#";
+                title = "#";
                 break;
               case "created_by":
-                column.id = "Created by";
+                title = "Created by";
                 break;
               case "questions_count":
-                column.id = "Questions count";
+                title = "Questions count";
                 break;
               case "created_at":
-                column.id = "Created at";
+                title = "Created at";
                 break;
               default:
                 break;
@@ -64,7 +66,7 @@ export function DataTableViewOptions<TData>({
                 className="capitalize"
                 checked={column.getIsVisible()}
                 onCheckedChange={(value) => column.toggleVisibility(!!value)}>
-                {column.id}
+                {title}
               </DropdownMenuCheckboxItem>
             );
           })}

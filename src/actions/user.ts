@@ -1,14 +1,15 @@
 "use server";
 import { API_URL } from "@/constants";
-import { getHeaders } from "@/lib/fetch";
+import { getCookieData } from "@/lib/fetch";
 import { User } from "@/types/user";
 
 export async function getProfile(): Promise<User> {
   const url = `${API_URL}/users/profile`;
+  const cookieData = String(await getCookieData());
 
   try {
     const res = await fetch(url, {
-      headers: { ...getHeaders() },
+      headers: { Cookie: cookieData },
       cache: "no-cache",
     });
     const data = await res.json();

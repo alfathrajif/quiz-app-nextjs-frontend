@@ -24,8 +24,8 @@ export default async function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL("/", request.url));
 
   if (!isAuthenticated || !profile) {
-    if (pathname.includes("/quizzes"))
-      return NextResponse.redirect(new URL("/sign-up", request.url));
+    if (pathname.includes("/quizzes") || pathname.includes("/u"))
+      return NextResponse.redirect(new URL("/login", request.url));
   }
 
   return NextResponse.next();

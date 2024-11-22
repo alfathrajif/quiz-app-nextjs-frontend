@@ -1,15 +1,16 @@
 "use server";
 import { API_URL } from "@/constants";
-import { getHeaders } from "@/lib/fetch";
+import { getCookieData } from "@/lib/fetch";
 import quizService from "@/services/quiz";
 import { CreateQuiz, Quiz, UpdateQuiz } from "@/types/quiz";
 
 export async function getQuiz(slug: string) {
   const url = `${API_URL}/quizzes/${slug}`;
+  const cookieData = String(await getCookieData());
 
   try {
     const res = await fetch(url, {
-      headers: { ...getHeaders() },
+      headers: { Cookie: cookieData },
       cache: "no-cache",
     });
 

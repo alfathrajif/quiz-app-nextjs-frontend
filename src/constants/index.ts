@@ -33,4 +33,66 @@ export const adminRoutes = {
       path: "/admin/quiz-results",
     },
   ],
+  payment: [
+    {
+      title: "Verifikasi",
+      path: "/admin/payment-verification",
+    },
+    {
+      title: "Log",
+      path: "/admin/payment-history",
+    },
+  ],
+};
+
+export const commonRoutes = [
+  {
+    title: "Tentang",
+    path: "#",
+  },
+  {
+    title: "Paket",
+    path: "/pricing",
+  },
+  {
+    title: "Kontak",
+    path: "#",
+  },
+];
+
+export const userRoutes = {
+  dashboard: {
+    title: "Dashboard",
+    path: "/u/dashboard",
+  },
+  exams: [
+    {
+      title: "Paket Tryout",
+      path: "/u/tryout-packages",
+    },
+    {
+      title: "Riwayat Ujian",
+      path: "/u/exam-history",
+    },
+  ],
+  results: [
+    {
+      title: "Hasil Ujian",
+      path: "/u/exam-results",
+    },
+    {
+      title: "Review Ujian",
+      path: "/u/exam-review",
+    },
+  ],
+  payments: [
+    {
+      title: "Riwayat Pembayaran",
+      path: "/u/payment-history",
+    },
+    {
+      title: "Pembayaran",
+      path: "/u/make-payment",
+    },
+  ],
 };

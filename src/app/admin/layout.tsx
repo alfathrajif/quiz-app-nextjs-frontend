@@ -9,8 +9,8 @@ const AdminLayout = ({
 }: Readonly<{
   children: React.ReactNode;
 }>) => {
-  const pathname = usePathname().split("/")[2];
-  const { management, monitoring } = adminRoutes;
+  const pathname = usePathname();
+  const { management, monitoring, payment } = adminRoutes;
 
   return (
     <div className="flex gap-x-5 wrapper py-10 relative">
@@ -23,7 +23,7 @@ const AdminLayout = ({
               key={index}
               href={route.path}
               className={`text-sm p-1 px-2 hover:underline ${
-                route.path.includes(pathname)
+                pathname.startsWith(route.path)
                   ? "text-primary"
                   : "text-muted-foreground"
               }`}>
@@ -38,7 +38,22 @@ const AdminLayout = ({
               key={index}
               href={route.path}
               className={`text-sm p-1 px-2 hover:underline ${
-                route.path.includes(pathname)
+                pathname.startsWith(route.path)
+                  ? "text-primary"
+                  : "text-muted-foreground"
+              }`}>
+              {route.title}
+            </Link>
+          ))}
+        </div>
+        <div className="flex flex-col gap-y-2">
+          <div className="text-sm p-1 px-2 font-semibold">Pembayaran</div>
+          {payment.map((route, index) => (
+            <Link
+              key={index}
+              href={route.path}
+              className={`text-sm p-1 px-2 hover:underline ${
+                pathname.startsWith(route.path)
                   ? "text-primary"
                   : "text-muted-foreground"
               }`}>
