@@ -25,19 +25,17 @@ const ProofImage = ({ imageUrl }: { imageUrl: string }) => {
         onInteractOutside={(e) => {
           e.preventDefault();
         }}>
-        <DialogHeader>
+        <DialogHeader className="space-y-0">
           <DialogTitle />
           <DialogDescription />
-          <div className="rounded-lg overflow-hidden">
-            <Image
-              src={`${API_URL}/images/receipts/${imageUrl}`}
-              alt={imageUrl}
-              loading="eager"
-              width={277}
-              height={500}
-              className="w-full h-full object-cover"
-            />
-          </div>
+          <Image
+            src={`${API_URL}/payment-receipts/images/${imageUrl}`}
+            alt={imageUrl}
+            loading="eager"
+            width={277}
+            height={500}
+            className="w-auto h-full object-cover rounded-lg"
+          />
         </DialogHeader>
         <Button
           variant="outline"

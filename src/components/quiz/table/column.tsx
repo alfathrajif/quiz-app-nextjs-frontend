@@ -1,15 +1,18 @@
 "use client";
+import { Quiz } from "@/types/quiz";
 import { ColumnDef } from "@tanstack/react-table";
-import { DataTableColumnHeader } from "./data-table-column-header";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { User } from "lucide-react";
 import moment from "moment";
 import Link from "next/link";
-import { Quiz } from "@/types/quiz";
+import { DataTableColumnHeader } from "./data-table-column-header";
+import ColumnActions from "../column-actions";
+
+interface TableMeta {
+  sectionSlug: string;
+}
 
 export const columns: ColumnDef<Quiz>[] = [
   {
-    accessorKey: "number",
+    accessorKey: "#",
     header: ({ column }) => (
       <DataTableColumnHeader
         column={column}
@@ -19,8 +22,8 @@ export const columns: ColumnDef<Quiz>[] = [
     ),
     cell: ({ row }) => {
       return (
-        <div className="ml-3 flex space-x-2 min-h-11 items-center">
-          <span className="font-medium">{row.getValue("number")}</span>
+        <div className="ml-3 flex space-x-2 min-h-8 items-center">
+          <span className="font-medium">{row.index + 1}</span>
         </div>
       );
     },
@@ -30,55 +33,24 @@ export const columns: ColumnDef<Quiz>[] = [
   {
     accessorKey: "title",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Title" />
+      <DataTableColumnHeader column={column} title="Judul" />
     ),
-    cell: ({ row }) => {
+    cell: ({ row, table }) => {
       const slug = row.original.slug;
+      const description = row.original.description;
+      const sectionSlug: string =
+        (table.options.meta as TableMeta)?.sectionSlug || "";
 
       return (
-        <Link
-          href={`/admin/quizzes/r/${slug}`}
-          className="flex items-center space-x-2 h-11 px-3 hover:underline">
-          <span className="font-medium">{row.getValue("title")}</span>
-        </Link>
-      );
-    },
-  },
-  {
-    accessorKey: "description",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Description" />
-    ),
-    cell: ({ row }) => {
-      return (
-        <div className="ml-3 flex space-x-2">
-          <span className="font-medium">{row.getValue("description")}</span>
-        </div>
-      );
-    },
-  },
-  {
-    accessorKey: "created_by",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Created By" />
-    ),
-    cell: ({ row }) => {
-      const user = row.original.created_by.user;
-
-      return (
-        <div className="ml-3 flex items-center gap-x-2">
-          <Avatar className="h-10 w-10">
-            <AvatarImage src="#" />
-            <AvatarFallback>
-              <User className="w-5 h-5 text-muted-foreground" />
-            </AvatarFallback>
-          </Avatar>
-          <div>
-            <div className="font-medium">{user.name}</div>
-            <div className="capitalize text-primary text-xs">
-              {user.role.name}
-            </div>
-          </div>
+        <div className="ml-3 py-1 max-w-sm">
+          <Link
+            href={`${sectionSlug}/view?quiz=${slug}`}
+            className="hover:underline">
+            {row.getValue("title")}
+          </Link>
+          <p className="text-sm font-light text-muted-foreground/70 line-clamp-1">
+            {description}
+          </p>
         </div>
       );
     },
@@ -86,7 +58,7 @@ export const columns: ColumnDef<Quiz>[] = [
   {
     accessorKey: "questions_count",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Number of Questions" />
+      <DataTableColumnHeader column={column} title="Jumlah Soal" />
     ),
     cell: ({ row }) => {
       return (
@@ -99,7 +71,7 @@ export const columns: ColumnDef<Quiz>[] = [
   {
     accessorKey: "created_at",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Created At" />
+      <DataTableColumnHeader column={column} title="Dibuat Tanggal" />
     ),
     cell: ({ row }) => {
       return (
@@ -109,6 +81,34 @@ export const columns: ColumnDef<Quiz>[] = [
           </span>
         </div>
       );
+    },
+  },
+  {
+    accessorKey: "updated_at",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Diperbarui Tanggal" />
+    ),
+    cell: ({ row }) => {
+      return (
+        <div className="ml-3 flex space-x-2">
+          <span className="font-medium">
+            {moment(row.getValue("updated_at")).format("LL")}
+          </span>
+        </div>
+      );
+    },
+  },
+  {
+    accessorKey: "actions",
+    enableSorting: false,
+    enableHiding: false,
+    header: () => <></>,
+    cell: ({ row, table }) => {
+      const rowData: Quiz = row.original;
+      const sectionSlug: string =
+        (table.options.meta as TableMeta)?.sectionSlug || "";
+
+      return <ColumnActions rowData={rowData} sectionSlug={sectionSlug} />;
     },
   },
 ];

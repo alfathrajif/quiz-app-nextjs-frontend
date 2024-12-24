@@ -89,7 +89,9 @@ const PaymentRequestForm = ({
         variant: "destructive",
       });
     } finally {
-      setIsLoading(false);
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 2000);
     }
   };
 

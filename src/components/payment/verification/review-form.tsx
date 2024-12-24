@@ -69,17 +69,15 @@ const ReviewForm = ({ receipt, setIsOpenDialog }: ReviewFormProps) => {
         });
         setIsLoading(false);
       } else {
-        toast({
-          description: result.message,
-          variant: "default",
-        });
+        setIsOpenDialog(false);
         setTimeout(() => {
-          setIsOpenDialog(false);
-          setTimeout(() => {
-            setIsLoading(false);
-          }, 300);
+          setIsLoading(false);
         }, 300);
         router.refresh();
+        toast({
+          description: "Pembayaran berhasil ditinjau",
+          variant: "default",
+        });
       }
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any

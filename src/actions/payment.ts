@@ -6,6 +6,7 @@ import { WebResponse } from "@/types";
 import {
   CreatePaymentReceipt,
   CreatePaymentRequest,
+  PaymentLog,
   PaymentReceipt,
   PaymentRequest,
   UpdatePaymentRequest,
@@ -201,6 +202,39 @@ export async function getPaymentVerifications(): Promise<PaymentReceipt[]> {
       throw new Error(`Fetch error: ${err.message}`);
     } else {
       console.error("Unknown error fetching payment receipts:", err);
+      throw new Error("An unknown error occurred");
+    }
+  }
+}
+
+export async function getPaymentLogs(): Promise<PaymentLog[]> {
+  const url = `${API_URL}/payment-logs`;
+  const cookieData = String(await getCookieData());
+
+  try {
+    const res = await fetch(url, {
+      headers: { Cookie: cookieData },
+      cache: "no-cache",
+    });
+
+    if (!res.ok) {
+      const errorData = await res.json();
+      console.error("Error fetching payment logs:", res.status, errorData);
+      throw new Error(
+        `Error: ${res.status} - ${
+          errorData.message || "Failed to fetch payment logs"
+        }`
+      );
+    }
+
+    const data = await res.json();
+    return data.data;
+  } catch (err: unknown) {
+    if (err instanceof Error) {
+      console.error("Error fetching payment logs:", err);
+      throw new Error(`Fetch error: ${err.message}`);
+    } else {
+      console.error("Unknown error fetching payment logs:", err);
       throw new Error("An unknown error occurred");
     }
   }

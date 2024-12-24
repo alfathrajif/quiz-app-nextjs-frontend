@@ -1,6 +1,6 @@
 export interface Subscription {
-  started_Date: Date;
-  end_Date: Date;
+  started_date: Date;
+  end_date: Date;
   status: string;
   subscription_plan: SubscriptionPlan;
 }

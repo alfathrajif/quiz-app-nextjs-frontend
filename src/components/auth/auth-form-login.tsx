@@ -22,7 +22,9 @@ import { toast } from "@/hooks/use-toast";
 
 const formSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email" }),
-  password: z.string(),
+  password: z
+    .string()
+    .min(8, { message: "Password must be at least 8 characters" }),
 });
 
 type FormSchemaType = z.infer<typeof formSchema>;
@@ -75,7 +77,7 @@ const AuthFormLogin = () => {
   };
 
   const autoFillLogin = () => {
-    const email = "cassandra@example.com";
+    const email = "admin@example.com";
     const password = "Password123";
     form.setValue("email", email);
     form.setValue("password", password);

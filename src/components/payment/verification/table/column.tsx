@@ -4,7 +4,6 @@ import { DataTableColumnHeader } from "./data-table-column-header";
 import { Badge } from "@/components/ui/badge";
 import moment from "moment";
 import { formatCurrency } from "@/lib/utils";
-import { User } from "@/types/user";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { UserIcon } from "lucide-react";
 import Review from "../review";
@@ -31,13 +30,14 @@ export const columns: ColumnDef<PaymentReceipt>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "user",
-    accessorFn: (row) => row.payment_request.user,
+    accessorKey: "username",
+    accessorFn: (row) => row.payment_request.user.name,
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Pengguna" />
     ),
     cell: ({ row }) => {
-      const user: User = row.getValue("user");
+      const username: string = row.getValue("username");
+      const email: string = row.original.payment_request.user.email;
 
       return (
         <div className="ml-3 flex items-center space-x-2 py-1.5">
@@ -49,10 +49,10 @@ export const columns: ColumnDef<PaymentReceipt>[] = [
           </Avatar>
           <div>
             <div className="flex gap-x-2 items-center">
-              <div className="font-semibold">{user?.name}</div>
+              <div className="font-semibold">{username}</div>
             </div>
             <div className="text-xs text-muted-foreground font-light">
-              {user.email}
+              {email}
             </div>
           </div>
         </div>

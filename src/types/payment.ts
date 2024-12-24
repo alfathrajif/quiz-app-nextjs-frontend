@@ -1,4 +1,4 @@
-import { SubscriptionPlan } from "./subscription";
+import { Subscription, SubscriptionPlan } from "./subscription";
 import { User } from "./user";
 
 export interface CreatePaymentRequest {
@@ -50,4 +50,16 @@ export interface PaymentReceipt {
   reviewed_by?: User;
   reviewed_date?: Date;
   remarks?: string;
+}
+
+export interface PaymentLog {
+  uuid: string;
+  user_uuid: string;
+  user: User;
+  amount: number;
+  payment_date: Date;
+  subscription_uuid: string;
+  subscription: Subscription;
+  created_at: Date;
+  updated_at: Date;
 }

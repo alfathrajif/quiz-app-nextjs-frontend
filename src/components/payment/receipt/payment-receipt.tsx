@@ -189,10 +189,7 @@ const PaymentReceipt = ({
                 "Batal"
               )}
             </Button>
-            <PaymentReceiptForm
-              paymentRequest={paymentRequest}
-              setIsOpenDialogPaymentReceipt={setIsOpenDialog}
-            />
+            <PaymentReceiptForm paymentRequest={paymentRequest} />
           </div>
         </DialogFooter>
       </DialogContent>

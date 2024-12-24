@@ -25,10 +25,8 @@ import { createPaymentReceipt, uploadReceiptImage } from "@/actions/payment";
 
 const PaymentReceipt = ({
   paymentRequest,
-  setIsOpenDialogPaymentReceipt,
 }: {
   paymentRequest: PaymentRequest;
-  setIsOpenDialogPaymentReceipt: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const router = useRouter();
   const [file, setFile] = useState<File>();
@@ -79,14 +77,8 @@ const PaymentReceipt = ({
           variant: "default",
         });
         setTimeout(() => {
-          setIsOpenDialogPaymentReceipt(false);
-          setTimeout(() => {
-            setIsOpenDialog(false);
-            setTimeout(() => {
-              setIsLoading(false);
-            }, 300);
-          }, 300);
-        }, 300);
+          setIsLoading(false);
+        }, 2000);
         router.push(`/u/payment-history`);
       }
       // eslint-disable-next-line @typescript-eslint/no-explicit-any

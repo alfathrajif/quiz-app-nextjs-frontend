@@ -49,12 +49,12 @@ export const columns: ColumnDef<Question>[] = [
       const choices: Choice[] = row.getValue("choices") || [];
 
       return (
-        <div className="ml-3 flex space-x-2">
+        <div className="ml-3 flex flex-wrap gap-1 py-2">
           {choices.map((choice: Choice, index: number) => (
             <Badge
               key={index}
               variant="outline"
-              className={`font-medium whitespace-nowrap ${
+              className={`font-medium whitespace-nowrap rounded-none ${
                 choice.is_correct && "border-green-700 text-green-700"
               }`}>
               {choice.text}

@@ -6,6 +6,10 @@ const nextConfig = {
         hostname: "localhost",
         port: "3001",
       },
+      {
+        hostname: "localhost",
+        port: "5001",
+      },
     ],
   },
 };

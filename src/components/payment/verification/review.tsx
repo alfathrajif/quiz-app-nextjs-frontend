@@ -38,7 +38,7 @@ const Review = ({ data }: ReviewProps) => {
         <div className="flex gap-x-6">
           <div className="min-w-[277px] max-w-[277px] border rounded-lg overflow-hidden">
             <Image
-              src={`${API_URL}/images/receipts/${data.payment_proof_image}`}
+              src={`${API_URL}/payment-receipts/images/${data.payment_proof_image}`}
               alt={data.payment_proof_image}
               width={277}
               height={500}

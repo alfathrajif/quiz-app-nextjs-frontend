@@ -23,6 +23,10 @@ export const adminRoutes = {
       path: "/admin/users",
     },
     {
+      title: "Tryout",
+      path: "/admin/tryout",
+    },
+    {
       title: "Quizzes",
       path: "/admin/quizzes",
     },
@@ -39,8 +43,8 @@ export const adminRoutes = {
       path: "/admin/payment-verification",
     },
     {
-      title: "Log",
-      path: "/admin/payment-history",
+      title: "Catatan",
+      path: "/admin/payment-logs",
     },
   ],
 };

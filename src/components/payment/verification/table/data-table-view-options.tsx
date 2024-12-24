@@ -44,11 +44,11 @@ export function DataTableViewOptions<TData>({
             let title;
 
             switch (column.id) {
+              case "user":
+                title = "Pengguna";
+                break;
               case "name":
                 title = "Paket";
-                break;
-              case "amount":
-                title = "Biaya";
                 break;
               case "payment_date":
                 title = "Tanggal Pembayaran";
@@ -56,17 +56,11 @@ export function DataTableViewOptions<TData>({
               case "status":
                 title = "Status";
                 break;
-              case "due_date":
-                title = "Tangga Jatuh Tempo";
+              case "notes":
+                title = "Catatan";
                 break;
-              case "reviewed_by":
-                title = "Ditinjau oleh";
-                break;
-              case "review_date":
-                title = "Tanggal Review";
-                break;
-              case "payment_proof_image":
-                title = "Bukti Transfer";
+              case "action":
+                title = "Aksi";
                 break;
               default:
                 break;
