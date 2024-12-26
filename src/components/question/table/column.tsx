@@ -28,7 +28,7 @@ export const columns: ColumnDef<Question>[] = [
   {
     accessorKey: "text",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Question" />
+      <DataTableColumnHeader column={column} title="Soal Quiz" />
     ),
     cell: ({ row }) => {
       const text: string = row.original.text;
@@ -43,7 +43,7 @@ export const columns: ColumnDef<Question>[] = [
   {
     accessorKey: "choices",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Choices" />
+      <DataTableColumnHeader column={column} title="Pilihan Ganda" />
     ),
     cell: ({ row }) => {
       const choices: Choice[] = row.getValue("choices") || [];
@@ -67,7 +67,7 @@ export const columns: ColumnDef<Question>[] = [
   {
     accessorKey: "explanation",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Explanation" />
+      <DataTableColumnHeader column={column} title="Penjelasan" />
     ),
     cell: ({ row }) => {
       return (

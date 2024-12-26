@@ -18,7 +18,7 @@ export const columns: ColumnDef<Tryout>[] = [
     ),
     cell: ({ row }) => {
       return (
-        <div className="ml-3 flex space-x-2 min-h-8 items-center">
+        <div className="ml-3 flex space-x-2 items-center">
           <span className="font-medium">{row.index + 1}</span>
         </div>
       );
@@ -35,8 +35,10 @@ export const columns: ColumnDef<Tryout>[] = [
       const slug = row.original.slug;
 
       return (
-        <div className="ml-3 py-1 max-w-sm">
-          <Link href={`/admin/tryout/${slug}`} className="hover:underline">
+        <div className="ml-3 max-w-sm">
+          <Link
+            href={`/admin/tryout/${slug}`}
+            className="hover:underline line-clamp-2">
             {row.getValue("title")}
           </Link>
         </div>
@@ -50,8 +52,10 @@ export const columns: ColumnDef<Tryout>[] = [
     ),
     cell: ({ row }) => {
       return (
-        <div className="ml-3 py-1 max-w-sm">
-          <p className="text-sm font-light text-muted-foreground/70 line-clamp-1">
+        <div className="ml-3 max-w-sm">
+          <p
+            className="text-sm font-light text-muted-foreground/70 line-clamp-2"
+            title={row.getValue("description")}>
             {row.getValue("description")}
           </p>
         </div>

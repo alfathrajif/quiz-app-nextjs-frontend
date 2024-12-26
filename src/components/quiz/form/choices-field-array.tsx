@@ -46,7 +46,7 @@ const ChoicesFieldArray = ({
                     <FormItem className="w-full">
                       <FormControl>
                         <Input
-                          placeholder={`Choice ${choiceIndex + 1}`}
+                          placeholder={`Pilihan ${choiceIndex + 1}`}
                           className="h-12 px-5 border-2 focus:outline-none focus-visible:ring-0"
                           {...field}
                         />
@@ -71,7 +71,7 @@ const ChoicesFieldArray = ({
                         className={`cursor-pointer font-light ${
                           field.value && "text-primary"
                         }`}>
-                        Correct Answer
+                        Jawaban Benar
                       </FormLabel>
                     </FormItem>
                   )}
@@ -91,19 +91,17 @@ const ChoicesFieldArray = ({
       ) : (
         ""
       )}
-
       {errors.questions?.[questionIndex]?.choices && (
         <div className="text-red-500 text-sm pb-4">
           {errors.questions?.[questionIndex]?.choices?.root?.message}
         </div>
       )}
-
       <Button
         type="button"
         variant="outline"
         onClick={() => appendChoice({ is_correct: false, text: "" })}
         className="border-2">
-        Add Choice
+        Tambah Pilihan
       </Button>
     </>
   );

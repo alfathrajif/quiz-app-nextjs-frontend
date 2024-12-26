@@ -144,7 +144,7 @@ const Create = () => {
                 <FormControl>
                   <Input
                     className="h-20 px-0 text-3xl border-r-0 border-l-0 border-t-0 border-b-2 rounded-none focus:outline-none focus-visible:ring-0"
-                    placeholder="Quiz Title"
+                    placeholder="Judul Quiz"
                     autoFocus
                     {...field}
                   />
@@ -158,11 +158,11 @@ const Create = () => {
             name="description"
             render={({ field }) => (
               <FormItem className="grid w-full">
-                <FormLabel>Description</FormLabel>
+                <FormLabel>Deskripsi</FormLabel>
                 <FormControl>
                   <Textarea
                     id="description"
-                    placeholder="Enter a description for the quiz"
+                    placeholder="Masukkan deskripsi untuk quiz"
                     className="resize-none p-4 px-0 border-r-0 border-l-0 border-t-0 border-b-2 rounded-none focus:outline-none focus-visible:ring-0"
                     {...field}
                   />
@@ -172,7 +172,7 @@ const Create = () => {
             )}
           />
           <div className="flex flex-col gap-6 items-start">
-            <h2 className="text-2xl font-semibold">Questions</h2>
+            <h2 className="text-2xl font-semibold">Soal Quiz</h2>
             <div className="flex flex-col gap-10 w-full">
               {questionFields.map((questionField, questionIndex) => (
                 <div key={questionField.id} className="flex w-full gap-x-5">
@@ -189,9 +189,9 @@ const Create = () => {
                           <FormItem className="w-full">
                             <FormControl>
                               <Textarea
-                                placeholder={`Enter Question ${
+                                placeholder={`Masukkan soal no ${
                                   questionIndex + 1
-                                } for the quiz`}
+                                } untuk quiz`}
                                 className="resize-none p-4 px-5 border-2 focus:outline-none focus-visible:ring-0"
                                 {...field}
                               />
@@ -210,7 +210,9 @@ const Create = () => {
                       </Button>
                     </div>
                     <div className="ml-11 space-y-2">
-                      <h4 className="text-foreground font-medium">Choices</h4>
+                      <h4 className="text-foreground font-medium">
+                        Pilihan Ganda
+                      </h4>
                       <ChoicesFieldArray
                         errors={form.formState.errors}
                         control={form.control}
@@ -224,11 +226,11 @@ const Create = () => {
                         render={({ field }) => (
                           <FormItem className="grid w-full">
                             <FormLabel className="text-base text-foreground font-medium">
-                              Explanation
+                              Penjelasan Soal
                             </FormLabel>
                             <FormControl>
                               <Textarea
-                                placeholder="Enter an explanation for the question"
+                                placeholder="Masukkan penjelasan untuk soal ini"
                                 className="resize-none p-4 px-5 border-2 focus:outline-none focus-visible:ring-0"
                                 {...field}
                               />
@@ -252,7 +254,7 @@ const Create = () => {
                     explanation: "",
                   })
                 }>
-                <Plus className="w-4 h-4" /> Add Question
+                <Plus className="w-4 h-4" /> Tambah
               </Button>
             </div>
           </div>
@@ -261,10 +263,10 @@ const Create = () => {
               {isLoading ? (
                 <div className="flex items-center">
                   <IoReload className="mr-2 h-4 w-4 animate-spin" />
-                  Please wait
+                  Mohon tunggu
                 </div>
               ) : (
-                "Create Quiz"
+                "Tambahkan Quiz"
               )}
             </Button>
           </div>

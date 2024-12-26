@@ -3,7 +3,6 @@
 import { DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
 import { MixerHorizontalIcon } from "@radix-ui/react-icons";
 import { Table } from "@tanstack/react-table";
-
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -28,11 +27,11 @@ export function DataTableViewOptions<TData>({
           size="sm"
           className="ml-auto hidden h-9 lg:flex">
           <MixerHorizontalIcon className="mr-2 h-4 w-4" />
-          View
+          Lihat
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="min-w-[150px]">
-        <DropdownMenuLabel>Toggle columns</DropdownMenuLabel>
+        <DropdownMenuLabel>Tampilkan Kolom</DropdownMenuLabel>
         <DropdownMenuSeparator />
         {table
           .getAllColumns()
@@ -41,15 +40,17 @@ export function DataTableViewOptions<TData>({
               typeof column.accessorFn !== "undefined" && column.getCanHide()
           )
           .map((column) => {
+            let title;
+
             switch (column.id) {
-              case "number":
-                column.id = "#";
-                break;
               case "text":
-                column.id = "Question";
+                title = "Soal Quiz";
                 break;
-              case "created_at":
-                column.id = "Created at";
+              case "choices":
+                title = "Pilihan Ganda";
+                break;
+              case "explanation":
+                title = "Penjelasan";
                 break;
               default:
                 break;
@@ -61,7 +62,7 @@ export function DataTableViewOptions<TData>({
                 className="capitalize"
                 checked={column.getIsVisible()}
                 onCheckedChange={(value) => column.toggleVisibility(!!value)}>
-                {column.id}
+                {title}
               </DropdownMenuCheckboxItem>
             );
           })}

@@ -26,10 +26,6 @@ export const adminRoutes = {
       title: "Tryout",
       path: "/admin/tryout",
     },
-    {
-      title: "Quizzes",
-      path: "/admin/quizzes",
-    },
   ],
   monitoring: [
     {

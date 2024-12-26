@@ -24,7 +24,7 @@ export function DataTableToolbar<TData>({
     <div className="flex items-center justify-between">
       <div className="flex flex-1 items-center space-x-2">
         <Input
-          placeholder="Search question..."
+          placeholder="Cari berdasarkan soal quiz..."
           value={(table.getColumn("text")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
             table.getColumn("text")?.setFilterValue(event.target.value)
@@ -45,7 +45,7 @@ export function DataTableToolbar<TData>({
         <Link href={`edit?quiz=${queryQuiz}`}>
           <Button size="sm" className="text-xs gap-x-1">
             <Plus className="w-4 h-4" />
-            Edit Quiz & Questions
+            Edit Quiz
           </Button>
         </Link>
         <DataTableViewOptions table={table} />

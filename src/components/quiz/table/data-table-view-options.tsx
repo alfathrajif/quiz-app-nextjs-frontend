@@ -28,11 +28,11 @@ export function DataTableViewOptions<TData>({
           size="sm"
           className="ml-auto hidden h-9 lg:flex">
           <MixerHorizontalIcon className="mr-2 h-4 w-4" />
-          View
+          Lihat
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="min-w-[150px]">
-        <DropdownMenuLabel>Toggle columns</DropdownMenuLabel>
+        <DropdownMenuLabel>Tampilkan Kolom</DropdownMenuLabel>
         <DropdownMenuSeparator />
         {table
           .getAllColumns()
@@ -44,17 +44,17 @@ export function DataTableViewOptions<TData>({
             let title;
 
             switch (column.id) {
-              case "number":
-                title = "#";
-                break;
-              case "created_by":
-                title = "Created by";
+              case "title":
+                title = "Judul";
                 break;
               case "questions_count":
-                title = "Questions count";
+                title = "Jumlah Soal";
                 break;
               case "created_at":
-                title = "Created at";
+                title = "Dibuat Tanggal";
+                break;
+              case "updated_at":
+                title = "Diperbarui Tanggal";
                 break;
               default:
                 break;

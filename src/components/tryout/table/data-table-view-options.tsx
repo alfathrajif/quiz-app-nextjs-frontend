@@ -47,11 +47,14 @@ export function DataTableViewOptions<TData>({
               case "title":
                 title = "Judul";
                 break;
-              case "created_by":
-                title = "Dibuat Oleh";
+              case "description":
+                title = "Deskripsi";
                 break;
               case "created_at":
                 title = "Dibuat Tanggal";
+                break;
+              case "updated_at":
+                title = "Diperbarui Tanggal";
                 break;
               default:
                 break;
