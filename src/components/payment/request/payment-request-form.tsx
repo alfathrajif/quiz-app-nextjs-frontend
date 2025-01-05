@@ -17,10 +17,10 @@ import { Input } from "@/components/ui/input";
 import { formatPhone } from "@/lib/utils";
 import { IoReload } from "react-icons/io5";
 import { toast } from "@/hooks/use-toast";
-import { SubscriptionPlan } from "@/types/subscription";
-import { createPaymentRequest } from "@/actions/payment";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
+import { SubscriptionPlan } from "@/types/subscription-plan";
+import { createPaymentRequest } from "@/actions/payment";
 
 const formSchema = z.object({
   first_name: z.string().min(1, {
@@ -36,15 +36,16 @@ type FormSchemaType = z.infer<typeof formSchema>;
 
 const PaymentRequestForm = ({
   profile,
-  plan,
+  subscriptionPlan,
   setIsOpenDialog,
 }: {
   profile: User;
-  plan: SubscriptionPlan;
+  subscriptionPlan: SubscriptionPlan;
   setIsOpenDialog: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
+  const { uuid, price } = subscriptionPlan;
 
   const form = useForm<FormSchemaType>({
     resolver: zodResolver(formSchema),
@@ -65,8 +66,8 @@ const PaymentRequestForm = ({
 
       const payload = {
         ...values,
-        amount: plan.price,
-        subscription_plan_uuid: plan.uuid,
+        amount: price,
+        subscription_plan_uuid: uuid,
       };
 
       const result = await createPaymentRequest(payload);

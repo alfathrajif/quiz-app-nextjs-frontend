@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { IoEyeOffSharp, IoEyeSharp, IoReload } from "react-icons/io5";
@@ -31,6 +31,8 @@ type FormSchemaType = z.infer<typeof formSchema>;
 
 const AuthFormLogin = () => {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirect = searchParams.get("redirect");
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
@@ -62,7 +64,7 @@ const AuthFormLogin = () => {
           description: result.message,
           variant: "default",
         });
-        router.push("/");
+        router.push(redirect || "/");
       }
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {

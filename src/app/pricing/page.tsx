@@ -1,23 +1,26 @@
-import { getSubscriptionPlans } from "@/actions/subscription";
-import PlanCard from "@/components/subcsciption/plan-card";
+import { getSubscriptionPlans } from "@/actions/subscription-plans";
+import PlanCard from "@/components/subcsciption/plan/plan-card";
 
 const Pricing = async () => {
-  const plans = await getSubscriptionPlans();
+  const subscriptionPlans = await getSubscriptionPlans();
 
   return (
     <div className="wrapper py-10 space-y-8">
       <div className="text-center max-w-3xl mx-auto">
-        <h1 className="text-3xl md:text-4xl font-bold mb-2 tracking-tight leading-tight md:leading-[3.5rem]">
-          Pilih Paket Terbaik untuk Anda!
+        <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
+          Choose the Best Plan for You!
         </h1>
-        <p className="text-base leading-relaxed text-muted-foreground">
-          Nikmati akses eksklusif ke lebih banyak soal dan tingkatkan kemampuan
-          Anda. Bergabunglah&nbsp;sekarang dan raih kesuksesan lebih cepat!
+        <p className="leading-7 [&:not(:first-child)]:mt-6 text-muted-foreground">
+          Enjoy exclusive access to more questions and improve your skills.
+          <br /> Join now and achieve success faster!
         </p>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 max-w-4xl mx-auto gap-6">
-        {plans.map((plan) => (
-          <PlanCard key={plan.uuid} plan={plan} />
+      <div className="flex gap-6 max-w-6xl mx-auto justify-center">
+        {subscriptionPlans.map((subscriptionPlan) => (
+          <PlanCard
+            key={subscriptionPlan.uuid}
+            subscriptionPlan={subscriptionPlan}
+          />
         ))}
       </div>
     </div>

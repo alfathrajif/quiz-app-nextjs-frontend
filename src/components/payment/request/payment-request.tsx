@@ -8,28 +8,43 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "../../ui/button";
-import { SubscriptionPlan } from "@/types/subscription";
 import { User } from "@/types/user";
 import { formatCurrency } from "@/lib/utils";
 import PaymentRequestForm from "./payment-request-form";
 import Link from "next/link";
+import { SubscriptionPlan } from "@/types/subscription-plan";
 
 const PaymentRequest = ({
   profile,
-  plan,
+  subscriptionPlan,
 }: {
   profile: User;
-  plan: SubscriptionPlan;
+  subscriptionPlan: SubscriptionPlan;
 }) => {
   const [isOpenDialog, setIsOpenDialog] = useState(false);
+  const { duration, name, description, price } = subscriptionPlan;
   const pendingRequest = profile?.payment_requests.find(
     (request) => request.status === "pending"
   );
 
+  let period;
+
+  switch (duration) {
+    case "weekly":
+      period = "/minggu";
+      break;
+    case "monthly":
+      period = "/bulan";
+      break;
+    case "infinite":
+      period = "";
+      break;
+  }
+
   if (pendingRequest) {
     return (
       <Link href={`/u/make-payment?invoice=${pendingRequest.uuid}`} replace>
-        <Button>Pilih Paket</Button>
+        <Button>Subscribe</Button>
       </Link>
     );
   }
@@ -37,28 +52,28 @@ const PaymentRequest = ({
   return (
     <Dialog open={isOpenDialog} onOpenChange={() => setIsOpenDialog(true)}>
       <DialogTrigger asChild>
-        <Button>Pilih Paket</Button>
+        <Button>Subscribe</Button>
       </DialogTrigger>
-      <DialogContent className="p-10 max-w-xl">
+      <DialogContent className="p-8 max-w-xl">
         <DialogHeader>
-          <DialogTitle className="text-2xl">Paket Premium</DialogTitle>
-          <DialogDescription>{plan.description}</DialogDescription>
+          <DialogTitle className="font-bold text-3xl capitalize">
+            {name}
+          </DialogTitle>
+          <DialogDescription className="text-base">
+            {description}
+          </DialogDescription>
         </DialogHeader>
         <div>
           <span className="font-bold text-primary-main text-3xl">
-            {plan.name === "premium"
-              ? formatCurrency(plan.price, "IDR", "id-ID")
-              : "Gratis!"}{" "}
+            {name === "premium"
+              ? formatCurrency(price, "IDR", "id-ID")
+              : "Free!"}{" "}
           </span>
-          <span className="text-base text-muted-foreground">
-            {(plan.duration === "weekly" && "/minggu") ||
-              (plan.duration === "monthly" && "/bulan") ||
-              (plan.duration === "yearly" && "/tahun")}
-          </span>
+          <span className="text-base text-muted-foreground">{period}</span>
         </div>
         <PaymentRequestForm
           profile={profile}
-          plan={plan}
+          subscriptionPlan={subscriptionPlan}
           setIsOpenDialog={setIsOpenDialog}
         />
       </DialogContent>

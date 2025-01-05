@@ -26,6 +26,10 @@ export const adminRoutes = {
       title: "Tryout",
       path: "/admin/tryout",
     },
+    {
+      title: "Paket Langganan",
+      path: "/admin/subscription-plans",
+    },
   ],
   monitoring: [
     {

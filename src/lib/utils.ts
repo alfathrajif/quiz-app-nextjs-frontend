@@ -23,3 +23,11 @@ export function formatCurrency(
     currency: currencyCode,
   }).format(amount);
 }
+
+export function formatNumber(value: string) {
+  // Remove any non-numeric characters
+  const numericValue = value.replace(/\D/g, "");
+
+  // Insert '.' as a thousand separator
+  return numericValue.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}

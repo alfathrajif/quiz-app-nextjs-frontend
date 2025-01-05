@@ -41,7 +41,7 @@ const formSchema = z.object({
 
 type FormSchemaType = z.infer<typeof formSchema>;
 
-const CreateTryoutModal = () => {
+const CreateSectionModal = () => {
   const { profile } = useContext(AuthContext);
   const [isOpenDialog, setIsOpenDialog] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -200,4 +200,4 @@ const CreateTryoutModal = () => {
   );
 };
 
-export default CreateTryoutModal;
+export default CreateSectionModal;
