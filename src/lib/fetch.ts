@@ -1,5 +1,10 @@
 import { cookies } from "next/headers";
 
-export const getHeaders = () => ({
-  Cookie: cookies().toString(),
-});
+export async function getCookieData() {
+  const cookieData = cookies().toString();
+  return new Promise((resolve) =>
+    setTimeout(() => {
+      resolve(cookieData);
+    }, 1000)
+  );
+}

@@ -28,6 +28,8 @@ import {
 import { DataTablePagination } from "./data-table-pagination";
 import { DataTableToolbar } from "./data-table-toolbar";
 import { useRouter } from "next/navigation";
+import { useSectionStore } from "@/hooks/zustand/section-store";
+import { useShallow } from "zustand/react/shallow";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -45,6 +47,12 @@ export function DataTable<TData, TValue>({
     []
   );
   const [sorting, setSorting] = React.useState<SortingState>([]);
+
+  const { section } = useSectionStore(
+    useShallow((state) => ({
+      section: state.section,
+    }))
+  );
 
   const table = useReactTable({
     data,
@@ -66,6 +74,9 @@ export function DataTable<TData, TValue>({
     getSortedRowModel: getSortedRowModel(),
     getFacetedRowModel: getFacetedRowModel(),
     getFacetedUniqueValues: getFacetedUniqueValues(),
+    meta: {
+      sectionSlug: section?.slug,
+    },
   });
 
   const router = useRouter();

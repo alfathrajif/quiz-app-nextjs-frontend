@@ -7,6 +7,8 @@ import { Input } from "@/components/ui/input";
 import { DataTableViewOptions } from "./data-table-view-options";
 import Link from "next/link";
 import { Plus } from "lucide-react";
+import { useSectionStore } from "@/hooks/zustand/section-store";
+import { useShallow } from "zustand/react/shallow";
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>;
@@ -17,11 +19,17 @@ export function DataTableToolbar<TData>({
 }: DataTableToolbarProps<TData>) {
   const isFiltered = table.getState().columnFilters.length > 0;
 
+  const { section } = useSectionStore(
+    useShallow((state) => ({
+      section: state.section,
+    }))
+  );
+
   return (
     <div className="flex items-center justify-between">
       <div className="flex flex-1 items-center space-x-2">
         <Input
-          placeholder="Search quizzes by title..."
+          placeholder="Cari berdasarkan judul..."
           value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
             table.getColumn("title")?.setFilterValue(event.target.value)
@@ -39,12 +47,12 @@ export function DataTableToolbar<TData>({
         )}
       </div>
       <div className="flex items-center gap-x-1">
-        <Link href={`/admin/quizzes/c`}>
-          <Button size="sm" className="text-xs gap-x-1">
+        <Button asChild size="sm" className="text-xs gap-x-1">
+          <Link href={`${section?.slug}/new-quiz`}>
             <Plus className="w-4 h-4" />
-            New Quiz
-          </Button>
-        </Link>
+            Tambah Quiz
+          </Link>
+        </Button>
         <DataTableViewOptions table={table} />
       </div>
     </div>

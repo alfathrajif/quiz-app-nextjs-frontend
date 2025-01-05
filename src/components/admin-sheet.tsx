@@ -14,7 +14,7 @@ import { useEffect, useState } from "react";
 
 const AdminSheet = () => {
   const pathname = usePathname().split("/")[2];
-  const { management, monitoring } = adminRoutes;
+  const { management, monitoring, payment } = adminRoutes;
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
@@ -73,6 +73,26 @@ const AdminSheet = () => {
         <div className="flex flex-col gap-y-2">
           <div className="text-sm p-1 px-2 font-semibold">Monitoring</div>
           {monitoring.map((route, index) => (
+            <Link
+              key={index}
+              href={route.path}
+              onClick={() => {
+                setTimeout(() => {
+                  setIsOpen(false);
+                }, 300);
+              }}
+              className={`text-sm p-1 px-2 hover:underline ${
+                route.path.includes(pathname)
+                  ? "text-primary"
+                  : "text-muted-foreground"
+              }`}>
+              {route.title}
+            </Link>
+          ))}
+        </div>
+        <div className="flex flex-col gap-y-2">
+          <div className="text-sm p-1 px-2 font-semibold">Pembayaran</div>
+          {payment.map((route, index) => (
             <Link
               key={index}
               href={route.path}

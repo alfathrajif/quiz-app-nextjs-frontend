@@ -30,7 +30,7 @@ const QuizStart = ({ slug }: { slug: string }) => {
   };
 
   return (
-    <Link href={`/quizzes/${slug}/questions`}>
+    <Link href={`${slug}/questions`}>
       <Button onClick={handleStart}>Start Quiz</Button>
     </Link>
   );

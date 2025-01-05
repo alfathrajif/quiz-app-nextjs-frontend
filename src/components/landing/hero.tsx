@@ -30,7 +30,7 @@ const Hero = () => {
               melacak perkembangan secara mudah—kapan saja, di mana saja!
             </p>
             <div className="mt-6 flex gap-x-1.5">
-              <Link href="/quizzes">
+              <Link href="/tryout">
                 <Button>Mulai Tryout</Button>
               </Link>
             </div>

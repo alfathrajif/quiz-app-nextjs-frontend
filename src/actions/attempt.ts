@@ -1,7 +1,7 @@
 "use server";
 
 import { API_URL } from "@/constants";
-import { getHeaders } from "@/lib/fetch";
+import { getCookieData } from "@/lib/fetch";
 import attemptServices from "@/services/attempt";
 import { QuizAttemptPayload, QuizEvaluation, WebResponse } from "@/types";
 
@@ -22,8 +22,12 @@ export async function getAttempt(
 ): Promise<WebResponse<QuizEvaluation>> {
   try {
     const url = `${API_URL}/quiz-attempts/${attempt_uuid}`;
+    const cookieData = String(await getCookieData());
+
     const res = await fetch(url, {
-      headers: { ...getHeaders() },
+      headers: {
+        Cookie: cookieData,
+      },
       cache: "no-store",
     });
 

@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { DataTableViewOptions } from "./data-table-view-options";
 import Link from "next/link";
 import { Plus } from "lucide-react";
-import { useParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>;
@@ -17,13 +17,14 @@ export function DataTableToolbar<TData>({
   table,
 }: DataTableToolbarProps<TData>) {
   const isFiltered = table.getState().columnFilters.length > 0;
-  const params = useParams<{ quiz_slug: string }>();
+  const searchParams = useSearchParams();
+  const queryQuiz = searchParams.get("quiz");
 
   return (
     <div className="flex items-center justify-between">
       <div className="flex flex-1 items-center space-x-2">
         <Input
-          placeholder="Search question..."
+          placeholder="Cari berdasarkan soal quiz..."
           value={(table.getColumn("text")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
             table.getColumn("text")?.setFilterValue(event.target.value)
@@ -41,10 +42,10 @@ export function DataTableToolbar<TData>({
         )}
       </div>
       <div className="flex items-center gap-x-1">
-        <Link href={`/admin/quizzes/r/${params.quiz_slug}/u`}>
+        <Link href={`edit?quiz=${queryQuiz}`}>
           <Button size="sm" className="text-xs gap-x-1">
             <Plus className="w-4 h-4" />
-            Update Quiz & Questions
+            Edit Quiz
           </Button>
         </Link>
         <DataTableViewOptions table={table} />

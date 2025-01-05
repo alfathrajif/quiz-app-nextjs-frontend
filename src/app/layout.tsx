@@ -7,6 +7,8 @@ import Providers from "./providers";
 import Authenticated from "./(auth)/authenticated";
 import { Toaster } from "@/components/ui/toaster";
 import { getProfile } from "@/actions/user";
+import moment from "moment";
+import "moment/locale/id";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -28,6 +30,8 @@ export default async function RootLayout({
 }>) {
   const isAuthenticated = Authenticated();
   const profile = await getProfile();
+
+  moment.locale("id");
 
   return (
     <html lang="en" suppressHydrationWarning className={`${poppins.variable}`}>

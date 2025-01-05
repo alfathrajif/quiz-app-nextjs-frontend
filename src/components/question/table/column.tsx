@@ -28,7 +28,7 @@ export const columns: ColumnDef<Question>[] = [
   {
     accessorKey: "text",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Question" />
+      <DataTableColumnHeader column={column} title="Soal Quiz" />
     ),
     cell: ({ row }) => {
       const text: string = row.original.text;
@@ -43,18 +43,18 @@ export const columns: ColumnDef<Question>[] = [
   {
     accessorKey: "choices",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Choices" />
+      <DataTableColumnHeader column={column} title="Pilihan Ganda" />
     ),
     cell: ({ row }) => {
       const choices: Choice[] = row.getValue("choices") || [];
 
       return (
-        <div className="ml-3 flex space-x-2">
+        <div className="ml-3 flex flex-wrap gap-1 py-2">
           {choices.map((choice: Choice, index: number) => (
             <Badge
               key={index}
               variant="outline"
-              className={`font-medium whitespace-nowrap ${
+              className={`font-medium whitespace-nowrap rounded-none ${
                 choice.is_correct && "border-green-700 text-green-700"
               }`}>
               {choice.text}
@@ -67,7 +67,7 @@ export const columns: ColumnDef<Question>[] = [
   {
     accessorKey: "explanation",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Explanation" />
+      <DataTableColumnHeader column={column} title="Penjelasan" />
     ),
     cell: ({ row }) => {
       return (

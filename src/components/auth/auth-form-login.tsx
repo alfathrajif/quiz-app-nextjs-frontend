@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { IoEyeOffSharp, IoEyeSharp, IoReload } from "react-icons/io5";
@@ -22,13 +22,17 @@ import { toast } from "@/hooks/use-toast";
 
 const formSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email" }),
-  password: z.string(),
+  password: z
+    .string()
+    .min(8, { message: "Password must be at least 8 characters" }),
 });
 
 type FormSchemaType = z.infer<typeof formSchema>;
 
 const AuthFormLogin = () => {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirect = searchParams.get("redirect");
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
@@ -60,7 +64,7 @@ const AuthFormLogin = () => {
           description: result.message,
           variant: "default",
         });
-        router.push("/");
+        router.push(redirect || "/");
       }
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
@@ -75,7 +79,7 @@ const AuthFormLogin = () => {
   };
 
   const autoFillLogin = () => {
-    const email = "cassandra@example.com";
+    const email = "admin@example.com";
     const password = "Password123";
     form.setValue("email", email);
     form.setValue("password", password);

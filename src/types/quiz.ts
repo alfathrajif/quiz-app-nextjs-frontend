@@ -5,6 +5,7 @@ export interface CreateQuiz {
   title: string;
   description: string;
   questions: CreateQuestion[];
+  section_slug: string;
 }
 
 export interface UpdateQuiz {
@@ -20,7 +21,7 @@ export interface Quiz {
   title: string;
   description: string;
   questions_count: number;
-  questions?: Question[];
+  questions: Question[];
   created_by: {
     user: User;
   };

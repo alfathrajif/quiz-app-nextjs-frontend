@@ -7,9 +7,14 @@ const quizService = {
       .post("/quizzes", quiz)
       .then((response) => response)
       .catch((err) => err.response),
-  update: (slug: string, quiz: UpdateQuiz) =>
+  update: (uuid: string, quiz: UpdateQuiz) =>
     instance
-      .put(`/quizzes/${slug}`, quiz)
+      .patch(`/quizzes/${uuid}`, quiz)
+      .then((response) => response)
+      .catch((err) => err.response),
+  softDeleteQuiz: (uuid: string) =>
+    instance
+      .put(`/quizzes/${uuid}`)
       .then((response) => response)
       .catch((err) => err.response),
 };
