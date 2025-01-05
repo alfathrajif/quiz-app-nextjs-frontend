@@ -6,7 +6,7 @@ import { useShallow } from "zustand/react/shallow";
 import { DataTable } from "../quiz/table/data-table";
 import { columns } from "../quiz/table/column";
 
-export default function SingleSectionClient({ section }: { section: Section }) {
+export default function AdminSingleSection({ section }: { section: Section }) {
   const { setSection } = useSectionStore(
     useShallow((state) => ({
       setSection: state.setSection,

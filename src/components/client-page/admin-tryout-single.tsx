@@ -6,7 +6,7 @@ import { useShallow } from "zustand/react/shallow";
 import { DataTable } from "@/components/section/table/data-table";
 import { columns } from "@/components/section/table/column";
 
-export default function SingleTryoutClient({ tryout }: { tryout: Tryout }) {
+export default function AdminSingleTryout({ tryout }: { tryout: Tryout }) {
   const { setTryout } = useTryoutStore(
     useShallow((state) => ({
       setTryout: state.setTryout,

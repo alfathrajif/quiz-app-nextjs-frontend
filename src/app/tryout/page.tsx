@@ -1,8 +1,8 @@
 import { getTryouts } from "@/actions/tryout";
-import TryoutList from "@/components/tryout/tryout-list";
+import UserTryouts from "@/components/client-page/user-tryouts";
 
 export default async function Tryout() {
   const tryouts = await getTryouts();
 
-  return <TryoutList tryouts={tryouts} />;
+  return <UserTryouts tryouts={tryouts} />;
 }

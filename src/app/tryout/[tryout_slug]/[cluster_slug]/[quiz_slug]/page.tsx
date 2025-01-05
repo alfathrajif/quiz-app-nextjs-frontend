@@ -1,11 +1,7 @@
 import QuizStart from "@/components/quiz/quiz-start";
 
 const SingleQuiz = ({ params }: { params: { quiz_slug: string } }) => {
-  return (
-    <div className="">
-      <QuizStart slug={params.quiz_slug} />
-    </div>
-  );
+  return <QuizStart slug={params.quiz_slug} />;
 };
 
 export default SingleQuiz;

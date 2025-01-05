@@ -1,5 +1,5 @@
 import { getSection } from "@/actions/section";
-import SingleSectionClient from "@/components/client-page/single-section-client";
+import AdminSingleSection from "@/components/client-page/admin-section-single";
 import { notFound } from "next/navigation";
 import React from "react";
 
@@ -14,5 +14,5 @@ export default async function SingleSection({
     return notFound();
   }
 
-  return <SingleSectionClient section={section} />;
+  return <AdminSingleSection section={section} />;
 }

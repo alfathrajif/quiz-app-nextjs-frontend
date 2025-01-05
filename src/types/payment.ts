@@ -1,4 +1,5 @@
-import { Subscription, SubscriptionPlan } from "./subscription";
+import { Subscription } from "./subscription";
+import { SubscriptionPlan } from "./subscription-plan";
 import { User } from "./user";
 
 export interface CreatePaymentRequest {

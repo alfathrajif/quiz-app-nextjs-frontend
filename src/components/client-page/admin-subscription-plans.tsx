@@ -7,14 +7,8 @@ interface SubcriptionPlansClientProps {
   subscriptionPlans: SubscriptionPlanAdmin[];
 }
 
-const SubcriptionPlansClient = ({
+export default function AdminSubscriptionPlans({
   subscriptionPlans,
-}: SubcriptionPlansClientProps) => {
-  return (
-    <div>
-      <DataTable data={subscriptionPlans} columns={columns} />
-    </div>
-  );
-};
-
-export default SubcriptionPlansClient;
+}: SubcriptionPlansClientProps) {
+  return <DataTable data={subscriptionPlans} columns={columns} />;
+}

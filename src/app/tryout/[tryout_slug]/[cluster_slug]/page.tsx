@@ -1,13 +1,13 @@
-import { getQuizzes } from "@/actions/quiz";
-import QuizList from "@/components/quiz/quiz-list";
+import { getSection } from "@/actions/section";
+import UserSectionSingle from "@/components/client-page/user-section-single";
 import React from "react";
 
 export default async function SingleSection({
   params,
 }: {
-  params: { section_slug: string };
+  params: { cluster_slug: string };
 }) {
-  const quizzes = await getQuizzes(params.section_slug);
+  const section = await getSection(params.cluster_slug);
 
-  return <QuizList sectionSlug={params.section_slug} quizzes={quizzes} />;
+  return <UserSectionSingle section={section} />;
 }

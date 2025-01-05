@@ -1,5 +1,5 @@
 import { getQuiz } from "@/actions/quiz";
-import SingleQuizClient from "@/components/client-page/single-quiz-client";
+import AdminSingleQuiz from "@/components/client-page/admin-quiz-single";
 import { Quiz } from "@/types/quiz";
 import { notFound } from "next/navigation";
 import React from "react";
@@ -18,5 +18,5 @@ export default async function SingleQuiz({
     return notFound();
   }
 
-  return <SingleQuizClient quiz={quiz} />;
+  return <AdminSingleQuiz quiz={quiz} />;
 }
