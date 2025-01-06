@@ -3,8 +3,8 @@ import { useSectionStore } from "@/hooks/zustand/section-store";
 import { Section } from "@/types/section";
 import React, { useEffect } from "react";
 import { useShallow } from "zustand/react/shallow";
-import { DataTable } from "../quiz/table/data-table";
-import { columns } from "../quiz/table/column";
+import { DataTable } from "../../quiz/table/data-table";
+import { columns } from "../../quiz/table/column";
 
 export default function AdminSingleSection({ section }: { section: Section }) {
   const { setSection } = useSectionStore(

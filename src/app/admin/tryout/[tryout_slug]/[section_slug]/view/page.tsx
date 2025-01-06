@@ -1,5 +1,5 @@
 import { getQuiz } from "@/actions/quiz";
-import AdminSingleQuiz from "@/components/client-page/admin-quiz-single";
+import AdminSingleQuiz from "@/components/client-page/admin/admin-quiz-single";
 import { Quiz } from "@/types/quiz";
 import { notFound } from "next/navigation";
 import React from "react";

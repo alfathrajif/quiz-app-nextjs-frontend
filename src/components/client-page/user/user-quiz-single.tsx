@@ -1,12 +1,12 @@
 "use client";
 import Link from "next/link";
 import React, { useEffect } from "react";
-import { Button } from "../ui/button";
-import { useQuestionStore } from "../../hooks/zustand/question-store";
+import { Button } from "../../ui/button";
+import { useQuestionStore } from "../../../hooks/zustand/question-store";
 import { useShallow } from "zustand/react/shallow";
 import { useTimeTrackingStore } from "@/hooks/zustand/time-tracking-store";
 
-const QuizStart = ({ slug }: { slug: string }) => {
+export default function UserQuizSingle({ slug }: { slug: string }) {
   const { resetChoices, questions } = useQuestionStore(
     useShallow((state) => ({
       resetChoices: state.resetChoices,
@@ -34,6 +34,4 @@ const QuizStart = ({ slug }: { slug: string }) => {
       <Button onClick={handleStart}>Start Quiz</Button>
     </Link>
   );
-};
-
-export default QuizStart;
+}

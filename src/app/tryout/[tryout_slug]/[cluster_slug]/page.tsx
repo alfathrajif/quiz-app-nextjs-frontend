@@ -1,5 +1,5 @@
 import { getSection } from "@/actions/section";
-import UserSectionSingle from "@/components/client-page/user-section-single";
+import UserSectionSingle from "@/components/client-page/user/user-section-single";
 import React from "react";
 
 export default async function SingleSection({

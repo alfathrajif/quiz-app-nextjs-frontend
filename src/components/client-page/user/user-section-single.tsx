@@ -8,7 +8,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import Link from "next/link";
-import { Button } from "../ui/button";
+import { Button } from "../../ui/button";
 
 export default function UserSectionSingle({ section }: { section: Section }) {
   if (section.quizzes.length === 0) {
