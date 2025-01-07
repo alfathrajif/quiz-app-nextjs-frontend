@@ -1,5 +1,5 @@
 import { getSection } from "@/actions/section";
-import AdminSingleSection from "@/components/client-page/admin/admin-section-single";
+import AdminSingleSection from "@/components/client-page/admin/section-single";
 import { notFound } from "next/navigation";
 import React from "react";
 

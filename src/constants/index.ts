@@ -27,7 +27,7 @@ export const adminRoutes = {
       path: "/admin/tryout",
     },
     {
-      title: "Paket Langganan",
+      title: "Subscription Plans",
       path: "/admin/subscription-plans",
     },
   ],
@@ -39,11 +39,11 @@ export const adminRoutes = {
   ],
   payment: [
     {
-      title: "Verifikasi",
+      title: "Verification",
       path: "/admin/payment-verification",
     },
     {
-      title: "Catatan",
+      title: "Logs",
       path: "/admin/payment-logs",
     },
   ],

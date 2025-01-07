@@ -47,7 +47,7 @@ const AdminLayout = ({
           ))}
         </div>
         <div className="flex flex-col gap-y-2">
-          <div className="text-sm p-1 px-2 font-semibold">Pembayaran</div>
+          <div className="text-sm p-1 px-2 font-semibold">Payments</div>
           {payment.map((route, index) => (
             <Link
               key={index}

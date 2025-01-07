@@ -8,6 +8,8 @@ export interface User {
   email: string;
   role: Role;
   phone?: string;
+  created_at: Date;
+  updated_at: Date;
   subscription?: Subscription;
-  payment_requests: PaymentRequest[];
+  payment_requests?: PaymentRequest[];
 }

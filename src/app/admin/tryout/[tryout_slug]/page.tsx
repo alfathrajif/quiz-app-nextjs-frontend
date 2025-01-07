@@ -1,5 +1,5 @@
 import { getTryout } from "@/actions/tryout";
-import AdminSingleTryout from "@/components/client-page/admin/admin-tryout-single";
+import AdminSingleTryout from "@/components/client-page/admin/tryout-single";
 import { notFound } from "next/navigation";
 
 export default async function SingleTryout({
