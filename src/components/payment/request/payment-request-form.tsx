@@ -1,5 +1,5 @@
 "use client";
-import { User } from "@/types/user";
+import { UserProfileType } from "@/types/user";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
@@ -39,7 +39,7 @@ const PaymentRequestForm = ({
   subscriptionPlan,
   setIsOpenDialog,
 }: {
-  profile: User;
+  profile: UserProfileType;
   subscriptionPlan: SubscriptionPlan;
   setIsOpenDialog: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {

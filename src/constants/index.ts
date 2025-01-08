@@ -23,6 +23,10 @@ export const adminRoutes = {
       path: "/admin/users",
     },
     {
+      title: "Administrators",
+      path: "/admin/administrators",
+    },
+    {
       title: "Tryout",
       path: "/admin/tryout",
     },

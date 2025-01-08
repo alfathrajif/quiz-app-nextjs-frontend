@@ -8,7 +8,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "../../ui/button";
-import { User } from "@/types/user";
+import { UserProfileType } from "@/types/user";
 import { formatCurrency } from "@/lib/utils";
 import PaymentRequestForm from "./payment-request-form";
 import Link from "next/link";
@@ -18,7 +18,7 @@ const PaymentRequest = ({
   profile,
   subscriptionPlan,
 }: {
-  profile: User;
+  profile: UserProfileType;
   subscriptionPlan: SubscriptionPlan;
 }) => {
   const [isOpenDialog, setIsOpenDialog] = useState(false);

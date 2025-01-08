@@ -5,14 +5,14 @@ import { useRouter } from "next/navigation";
 import { useContext, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import PaymentRequest from "@/components/payment/request/payment-request";
-import { User } from "@/types/user";
+import { UserProfileType } from "@/types/user";
 import { SubscriptionPlan } from "@/types/subscription-plan";
 
 const PlanButtons = ({
   profile,
   subscriptionPlan,
 }: {
-  profile: User;
+  profile: UserProfileType;
   subscriptionPlan: SubscriptionPlan;
 }) => {
   const { name: planName } = subscriptionPlan;

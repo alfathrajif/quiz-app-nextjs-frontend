@@ -13,6 +13,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { commonRoutes, unauthenticatedRoutes } from "@/constants";
+import { UserProfileType } from "@/types/user";
 import {
   LayoutDashboard,
   LogOut,
@@ -24,13 +25,12 @@ import { useTheme } from "next-themes";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useContext } from "react";
+import { GrUserAdmin } from "react-icons/gr";
 import AdminSheet from "./admin-sheet";
 import Brand from "./brand";
-import { User } from "@/types/user";
 import { Badge } from "./ui/badge";
-import { GrUserAdmin } from "react-icons/gr";
 
-const UserProfile = ({ profile }: { profile: User }) => {
+const UserProfile = ({ profile }: { profile: UserProfileType }) => {
   const { theme, setTheme } = useTheme();
 
   const toggleTheme = () => {
@@ -152,9 +152,9 @@ const Header = () => {
 
   return (
     <header
-      className={`sticky top-0 z-10 bg-background/90 backdrop-blur-md flex w-full items-center h-16 ${
+      className={`sticky top-0 z-50 border-b bg-background/90 backdrop-blur-md flex w-full items-center h-16 ${
         isHomepage &&
-        "fixed top-0 left-0 bg-transparent backdrop-blur-none h-16"
+        "fixed top-0 left-0 border-b-0 bg-transparent backdrop-blur-none h-16"
       } `}>
       <div className="wrapper flex items-center">
         <div className="flex">

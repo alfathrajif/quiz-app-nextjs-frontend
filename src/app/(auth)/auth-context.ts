@@ -1,4 +1,4 @@
-import { User } from "@/types/user";
+import { UserProfileType } from "@/types/user";
 import { createContext } from "react";
 
 export const AuthContext = createContext({
@@ -6,5 +6,5 @@ export const AuthContext = createContext({
   profile: {},
 } as {
   isAuthenticated: boolean;
-  profile: User;
+  profile: UserProfileType;
 });
